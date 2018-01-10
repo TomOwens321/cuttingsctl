@@ -1,6 +1,7 @@
 import Adafruit_BBIO.GPIO as GPIO
 from threading import Thread
 import time
+from lib.logger import Logger
 
 class Relay:
     def __init__(self, pin):
@@ -10,10 +11,12 @@ class Relay:
         self._setup(self.pin)
         
     def turn_on(self):
+        Logger.logit("Turning " + self.name + " on")
         GPIO.output(self.pin, GPIO.LOW)
         self.state = 1
         
     def turn_off(self):
+        Logger.logit("Turning " +  self.name + " off")
         GPIO.output(self.pin, GPIO.HIGH)
         self.state = 0
         
