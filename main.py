@@ -1,17 +1,15 @@
 #!/usr/bin/env python
-from lib.relay import Relay
-from lib.sensor import Sensor
+from lib.mist_control import MistControl
 import time
 
 PIN = "P9_11"
-FREQ = 0.5      # minutes
+FREQ = 1.1      # minutes
 DURATION = 4.5   # seconds
 SENSOR = "AIN1"
 
-relay = Relay(PIN)
-sensor = Sensor(SENSOR)
+mctl = MistControl(PIN, SENSOR)
 
 while(1):
-    relay.timed(DURATION)
-    print "Sensor value: %f" % sensor.get_value()
+    mctl.relay.timed(DURATION)
+    print "Sensor value: %f" % mctl.sensor.get_value()
     time.sleep(FREQ * 60)
